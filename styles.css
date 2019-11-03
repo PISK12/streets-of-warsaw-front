@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css?family=Cousine&display=swap&subset=latin-ext");
+html {
+  height: 100%;
+  width: 100%;
+}
+html body {
+  font-family: "Cousine", monospace;
+  min-height: 100%;
+}
+html body input {
+  border: none;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+#container {
+  display: grid;
+}
+@media only screen and (max-width: 500px) {
+  #container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "input-container" "details-container";
+  }
+}
+@media only screen and (min-width: 501px) and (max-width: 1048px) {
+  #container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "input-container details-container";
+  }
+}
+@media only screen and (min-width: 1049px) {
+  #container {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "input-container . details-container";
+  }
+}
+#container #input-container {
+  grid-area: input-container;
+}
+#container #input-container #streetsList {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+#container #details-container {
+  grid-area: details-container;
+}
+
+/*# sourceMappingURL=styles.css.map */
