@@ -9,6 +9,7 @@ const addToStreetList = data=>{
         element.addEventListener('click',()=>clickToElementFromStreetList(element));
         streetList.appendChild(element);
     });
+    streetList.firstChild.classList.add('selected');
 };
 
 const clickToElementFromStreetList = (element)=>{
@@ -116,3 +117,36 @@ const observer = new MutationObserver(callback);
 // Start observing the target node for configured mutations
 observer.observe(targetNode, configObserver);
 
+document.addEventListener('keydown', evt => {
+    const streetsList = document.querySelector('#streetsList');
+    const selected = streetsList.querySelector('.selected');
+
+    const getNext = (evt, oldSelected) => {
+        if (evt.code === 'ArrowUp') {
+            if (oldSelected.previousSibling === null) {
+                return streetsList.lastChild;
+            } else {
+                return oldSelected.previousSibling;
+            }
+        } else if (evt.code === 'ArrowDown') {
+            if (oldSelected.nextSibling === null) {
+                return streetsList.firstChild;
+            } else {
+                return oldSelected.nextSibling;
+            }
+        } else {
+            return null;
+        }
+    };
+    if (evt.code === 'ArrowUp' || evt.code === 'ArrowDown') {
+        const newSelected = getNext(evt, selected);
+        if (newSelected !== null) {
+            selected.classList.remove('selected');
+            newSelected.classList.add('selected');
+        }
+    }
+
+    if (evt.code === 'Enter') {
+        clickToElementFromStreetList(selected);
+    }
+});
