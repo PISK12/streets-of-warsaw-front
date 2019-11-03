@@ -32,7 +32,7 @@ const cleanDetailsDistricts = () => {
     }
 };
 
-const searchData = async evt=>{
+const searchData = async () => {
     const url=new URL(API_URL+'/streets');
     const input = document.querySelector('#inputStreet');
     const params = {search:input.value};
@@ -70,16 +70,19 @@ const getDetails = async id =>{
             .then(response=>{return response.json()})
         ;
 };
+searchData().then(data => {
+    addToStreetList(data);
+});
 
-document.querySelector('#inputStreet').addEventListener('click',evt => {
-    searchData.then(data=>{
+document.querySelector('#inputStreet').addEventListener('click', () => {
+    searchData().then(data => {
         addToStreetList(data);
     });
 });
-document.querySelector('#inputStreet').addEventListener('input',evt => {
+document.querySelector('#inputStreet').addEventListener('input', () => {
     const input = document.querySelector('#inputStreet');
     input.removeAttribute('data-value');
-    searchData(evt).then(data=>{
+    searchData().then(data => {
         addToStreetList(data);
     });
 });
