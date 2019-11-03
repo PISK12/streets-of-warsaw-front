@@ -12,6 +12,7 @@ html body input {
   border-bottom-color: black;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  width: 100%;
 }
 
 #container {
