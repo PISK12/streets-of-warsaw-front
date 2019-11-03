@@ -1,4 +1,4 @@
-const API_URL='http://streets-of-warsaw-api.loc';
+const API_URL='https://api.street.piotrk14.usermd.net';
 const addToStreetList = data=>{
     const streetList = document.querySelector('#streetsList');
     cleanStreetList();
