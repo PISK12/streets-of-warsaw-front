@@ -1,4 +1,8 @@
 const API_URL='https://api.street.piotrk14.usermd.net';
+let param_1 = window.location.href.toString().split(window.location.host)[1].replace('/', '');
+
+
+
 const addToStreetList = data=>{
     const streetList = document.querySelector('#streetsList');
     cleanStreetList();
@@ -88,8 +92,7 @@ document.querySelector('#inputStreet').addEventListener('input', () => {
     });
 });
 
-
-
+getDetails(parseInt(param_1)).then(data => showDetails(data));
 
 
 const configObserver = {attributes: true, childList: false, subtree: false};
