@@ -9,7 +9,6 @@ html {
     min-height: 100%;
     margin: 0;
     padding: 0;
-
     input {
       border: none;
       border-bottom-color: black;
@@ -20,7 +19,11 @@ html {
   }
 }
 
+h1 {
+  margin: 1vw;
+}
 #container {
+  margin: 1vw 1vw 0 1vw;
   display: grid;
   @media only screen and (max-width: 500px) {
     grid-template-columns: 1fr;
@@ -47,7 +50,7 @@ html {
       padding-left: 0;
       margin-left: 0;
       .selected::before{
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Free", monospace;
         font-weight: 900;
         content: "\f0da";
       }
@@ -67,6 +70,7 @@ footer{
   flex-direction: row;
   justify-content: space-evenly;
   details{
+    width: 220px;
     summary{
       display: block;
     }

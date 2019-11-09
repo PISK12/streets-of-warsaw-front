@@ -19,7 +19,12 @@ html body input {
   width: 100%;
 }
 
+h1 {
+    margin: 1vw;
+}
+
 #container {
+    margin: 1vw 1vw 0 1vw;
   display: grid;
 }
 @media only screen and (max-width: 500px) {
@@ -52,7 +57,7 @@ html body input {
   margin-left: 0;
 }
 #container #input-container #streetsList .selected::before {
-  font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Free", monospace;
   font-weight: 900;
   content: "";
 }
@@ -68,6 +73,10 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+footer details {
+    width: 220px;
 }
 footer details summary {
   display: block;
