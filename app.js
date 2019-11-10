@@ -180,22 +180,31 @@ document.addEventListener('keydown', evt => {
     }
 });
 
+const setSecondPage = () => {
+    document.getElementById('container-page-1').style.display = 'none';
+    document.getElementById('container-page-2').style.display = 'grid';
+};
+
 window.addEventListener('wheel', evt => {
     if (evt.deltaY > 0) {
-        document.getElementById('container-page-1').style.display = 'none';
-        document.getElementById('container-page-2').style.display = 'grid';
+        setSecondPage();
     }
 });
 
+document.getElementById('button-show-all-streets').addEventListener('click', setSecondPage);
+
 let pageNumber = 1;
 let maxPageNumber = -1;
+let lockFullList = false;
 window.addEventListener('wheel', evt => {
-    if (evt.deltaY > 0 && (window.screen.availHeight * 3) > document.querySelector('body').getBoundingClientRect().bottom && (maxPageNumber === -1 || maxPageNumber >= pageNumber)) {
+    if (evt.deltaY > 0 && (window.screen.availHeight * 3) > document.querySelector('body').getBoundingClientRect().bottom && (maxPageNumber === -1 || maxPageNumber >= pageNumber) && !lockFullList) {
+        lockFullList = true;
         getData(pageNumber).then(response => {
             maxPageNumber = response.headers.get('X-Pagination-Page-Count');
             return response.json()
         }).then(response => addToFullStreetList(response));
         pageNumber = pageNumber + 1;
+        lockFullList = false;
     }
 });
 

@@ -21,7 +21,6 @@ html body input {
 #container-page-1 h1 {
     margin: 1vw;
 }
-
 #container-page-1 #container-search {
     margin: 1vw 1vw 0 1vw;
   display: grid;
@@ -47,27 +46,22 @@ html body input {
     grid-template-areas: "input-container . details-container";
   }
 }
-
 #container-page-1 #container-search #input-container {
   grid-area: input-container;
 }
-
 #container-page-1 #container-search #input-container #streetsList {
   list-style-type: none;
   padding-left: 0;
   margin-left: 0;
 }
-
 #container-page-1 #container-search #input-container #streetsList .selected::before {
     font-family: "Font Awesome 5 Free", monospace;
   font-weight: 900;
   content: "";
 }
-
 #container-page-1 #container-search #details-container {
   grid-area: details-container;
 }
-
 #container-page-1 footer {
   position: absolute;
   bottom: 0;
@@ -77,11 +71,9 @@ html body input {
   flex-direction: row;
   justify-content: space-evenly;
 }
-
 #container-page-1 footer details {
     width: 220px;
 }
-
 #container-page-1 footer details summary {
   display: block;
 }
@@ -89,7 +81,6 @@ html body input {
 #container-page-2 {
   display: none;
 }
-
 #container-page-2 a {
     color: #000000;
     text-decoration: none;
