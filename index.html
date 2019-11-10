@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Wyszukiwarka dzielnic i ulic</h1>
-    <section id="container">
+<section id="container-page-1">
+    <h1>Wyszukiwarka dzielnic i ulic</h1>
+    <section id="container-search">
         <div id="input-container">
             <label for="inputStreet">wyszukaj ulicę z listy:</label>
-            <input type="text" id="inputStreet" autofocus/>
+            <input autofocus id="inputStreet" type="text"/>
             <ul id="streetsList">
             </ul>
         </div>
@@ -28,10 +29,18 @@
 
         <details open>
             <summary>Żródła Danych</summary>
-            <a href="https://bip.warszawa.pl/Menu_przedmiotowe/zarzadzenia_uchwaly/Zarzadzenia/Prezydent_m__st__Warszawy/2019/luty/151_2019.htm">Link do listy ulic</a>
+            <a href="https://bip.warszawa.pl/Menu_przedmiotowe/zarzadzenia_uchwaly/Zarzadzenia/Prezydent_m__st__Warszawy/2019/luty/151_2019.htm">Link
+                do listy ulic</a>
             <a href="https://github.com/PISK12/streets-of-Warsaw/blob/master/streets-of-warsaw.csv">CSV</a>
         </details>
     </footer>
+</section>
+<section id="container-page-2">
+    <div>
+        <h1>List wszystkich ulic</h1>
+        <ul></ul>
+    </div>
+</section>
     <script src="app.js"></script>
 </body>
 </html>

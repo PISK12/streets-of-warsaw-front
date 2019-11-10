@@ -16,6 +16,18 @@ const addToStreetList = data=>{
     streetList.firstChild.classList.add('selected');
 };
 
+const addToFullStreetList = data => {
+    const fullStreetList = document.querySelector('#container-page-2>div>ul');
+    data.forEach(item => {
+        let element = document.createElement('li');
+        let subElement = document.createElement('a');
+        subElement.setAttribute('href', '/' + item.id + '_' + item.name);
+        subElement.innerText = item.name;
+        element.appendChild(subElement);
+        fullStreetList.appendChild(element);
+    });
+};
+
 const clickToElementFromStreetList = (element)=>{
     const input = document.querySelector('#inputStreet');
     input.setAttribute('data-value',element.getAttribute('data-value'));
@@ -53,6 +65,19 @@ const searchData = async () => {
     ;
 };
 
+const getData = async (page = 1) => {
+    const url = new URL(API_URL + '/streets');
+    const params = {page: page, 'per-page': 200};
+    url.search = new URLSearchParams(params).toString();
+    return await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        },
+        cache: "force-cache",
+    })
+};
+
 const showDetails = data =>{
     document.getElementById('details-name').innerText=data.name;
     const detailsDistricts = document.getElementById('details-districts');
@@ -71,10 +96,9 @@ const getDetails = async id =>{
                 'Accept':'application/json',
             },
             cache: "force-cache",
-        })
-            .then(response=>{return response.json()})
-        ;
+        }).then(response => response.json());
 };
+
 searchData().then(data => {
     addToStreetList(data);
 });
@@ -84,6 +108,7 @@ document.querySelector('#inputStreet').addEventListener('click', () => {
         addToStreetList(data);
     });
 });
+
 document.querySelector('#inputStreet').addEventListener('input', () => {
     const input = document.querySelector('#inputStreet');
     input.removeAttribute('data-value');
@@ -92,12 +117,13 @@ document.querySelector('#inputStreet').addEventListener('input', () => {
     });
 });
 
-getDetails(parseInt(param_1)).then(data => showDetails(data));
+if (parseInt(param_1) > 0) {
+    getDetails(parseInt(param_1)).then(data => showDetails(data));
+}
 
 
 const configObserver = {attributes: true, childList: false, subtree: false};
 const targetNode = document.getElementById('inputStreet');
-
 // Callback function to execute when mutations are observed
 const callback = function(mutationsList, observer) {
     for(let mutation of mutationsList) {
@@ -151,5 +177,45 @@ document.addEventListener('keydown', evt => {
 
     if (evt.code === 'Enter') {
         clickToElementFromStreetList(selected);
+    }
+});
+
+window.addEventListener('wheel', evt => {
+    if (evt.deltaY > 0) {
+        document.getElementById('container-page-1').style.display = 'none';
+        document.getElementById('container-page-2').style.display = 'grid';
+    }
+});
+
+let pageNumber = 1;
+let maxPageNumber = -1;
+window.addEventListener('wheel', evt => {
+    if (evt.deltaY > 0 && (window.screen.availHeight * 3) > document.querySelector('body').getBoundingClientRect().bottom && (maxPageNumber === -1 || maxPageNumber >= pageNumber)) {
+        getData(pageNumber).then(response => {
+            maxPageNumber = response.headers.get('X-Pagination-Page-Count');
+            return response.json()
+        }).then(response => addToFullStreetList(response));
+        pageNumber = pageNumber + 1;
+    }
+});
+
+let inTurnUp = 0;
+let inTurnDown = 0;
+window.addEventListener('wheel', evt => {
+    if (evt.deltaY > 0 && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        inTurnDown += 1;
+        inTurnUp = 0;
+    } else if (evt.deltaY < 0 && document.querySelector('body').getBoundingClientRect().y === 0) {
+        inTurnUp += 1;
+        inTurnDown = 0;
+    }
+});
+
+window.addEventListener('wheel', evt => {
+    if (evt.deltaY < 0 && inTurnUp > 3) {
+        document.getElementById('container-page-1').style.display = 'block';
+        document.getElementById('container-page-2').style.display = 'none';
+        inTurnUp = 0;
+        inTurnDown = 0;
     }
 });

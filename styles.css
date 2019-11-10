@@ -7,7 +7,6 @@ html {
 }
 html body {
   font-family: "Cousine", monospace;
-  min-height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -19,53 +18,57 @@ html body input {
   width: 100%;
 }
 
-h1 {
+#container-page-1 h1 {
     margin: 1vw;
 }
 
-#container {
+#container-page-1 #container-search {
     margin: 1vw 1vw 0 1vw;
   display: grid;
 }
 @media only screen and (max-width: 500px) {
-  #container {
+    #container-page-1 #container-search {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "input-container" "details-container";
   }
 }
 @media only screen and (min-width: 501px) and (max-width: 1048px) {
-  #container {
+    #container-page-1 #container-search {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "input-container details-container";
   }
 }
 @media only screen and (min-width: 1049px) {
-  #container {
+    #container-page-1 #container-search {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "input-container . details-container";
   }
 }
-#container #input-container {
+
+#container-page-1 #container-search #input-container {
   grid-area: input-container;
 }
-#container #input-container #streetsList {
+
+#container-page-1 #container-search #input-container #streetsList {
   list-style-type: none;
   padding-left: 0;
   margin-left: 0;
 }
-#container #input-container #streetsList .selected::before {
+
+#container-page-1 #container-search #input-container #streetsList .selected::before {
     font-family: "Font Awesome 5 Free", monospace;
   font-weight: 900;
   content: "";
 }
-#container #details-container {
+
+#container-page-1 #container-search #details-container {
   grid-area: details-container;
 }
 
-footer {
+#container-page-1 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -75,15 +78,21 @@ footer {
   justify-content: space-evenly;
 }
 
-footer details {
+#container-page-1 footer details {
     width: 220px;
 }
-footer details summary {
+
+#container-page-1 footer details summary {
   display: block;
 }
 
-#container-list {
+#container-page-2 {
   display: none;
+}
+
+#container-page-2 a {
+    color: #000000;
+    text-decoration: none;
 }
 
 /*# sourceMappingURL=styles.css.map */

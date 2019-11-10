@@ -6,7 +6,6 @@ html {
 
   body {
     font-family: 'Cousine', monospace;
-    min-height: 100%;
     margin: 0;
     padding: 0;
     input {
@@ -19,64 +18,78 @@ html {
   }
 }
 
-h1 {
-  margin: 1vw;
-}
-#container {
-  margin: 1vw 1vw 0 1vw;
-  display: grid;
-  @media only screen and (max-width: 500px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "input-container" "details-container";
-  }
-  @media only screen and (min-width: 501px) and (max-width: 1048px) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "input-container details-container";
-  }
-  @media only screen and (min-width: 1049px)  {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "input-container . details-container";
+#container-page-1 {
+  h1 {
+    margin: 1vw;
   }
 
+  #container-search {
+    margin: 1vw 1vw 0 1vw;
+    display: grid;
+    @media only screen and (max-width: 500px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "input-container" "details-container";
+    }
+    @media only screen and (min-width: 501px) and (max-width: 1048px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "input-container details-container";
+    }
+    @media only screen and (min-width: 1049px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "input-container . details-container";
+    }
 
-  #input-container {
-    grid-area: input-container;
 
-    #streetsList {
-      list-style-type: none;
-      padding-left: 0;
-      margin-left: 0;
-      .selected::before{
-        font-family: "Font Awesome 5 Free", monospace;
-        font-weight: 900;
-        content: "\f0da";
+    #input-container {
+      grid-area: input-container;
+
+      #streetsList {
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: 0;
+
+        .selected::before {
+          font-family: "Font Awesome 5 Free", monospace;
+          font-weight: 900;
+          content: "\f0da";
+        }
+      }
+    }
+
+    #details-container {
+      grid-area: details-container;
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    details {
+      width: 220px;
+
+      summary {
+        display: block;
       }
     }
   }
-
-  #details-container {
-    grid-area: details-container;
-  }
-}
-footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  details{
-    width: 220px;
-    summary{
-      display: block;
-    }
-  }
 }
 
-#container-list{
+#container-page-2 {
   display: none;
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  }
 }
+
+
